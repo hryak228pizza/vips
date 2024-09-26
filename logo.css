@@ -1,0 +1,35 @@
+.logo-pizza {
+    position: relative;
+    width: 50px;
+    height:50px;
+    background: rgb(255, 134, 64);
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    /* overflow: hidden; */
+}
+
+.logo-pizza::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 40px;
+    height: 40px;
+    background-color: #fdd36a;
+    border-radius: 50%;
+}
+
+.logo-pizza::after {
+    content: '';
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background-color: #cc3e25;
+    border-radius: 50%;
+    box-shadow: 10px 7px 0 0 #cc3e25, 
+                15px -3px 0 0 #cc3e25, 
+                18px 10px 0 0 #cc3e25,
+                1px 15px 0 0 #cc3e25;
+    top: 15px;
+    left: 15px;
+}
