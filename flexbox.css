@@ -1,0 +1,165 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    /* background-color: aqua; */
+    /* border: 1px solid black; */
+    overflow: hidden;
+    /* animation: shake 1s 4s infinite; */
+}
+
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-image: url('smile.png'); 
+    opacity: 0;
+    /* animation: fadeInBackground 10s forwards; */
+}
+
+.svg-item-p {
+    width: 50px;
+    height: 50px;
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    animation-delay: 0s;
+    opacity: 1;
+    /* animation: moveToCenter-p 5s forwards, fadeOut 10s forwards; */
+}
+.svg-item-i {
+    width: 50px;
+    height: 50px;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    /* animation-delay: 0s; */
+    opacity: 1;
+    /* animation: moveToCenter-i 5s forwards, fadeOut 10s forwards; */
+}
+.img{
+    height: 30px;
+    width: 30px;
+    opacity: 0;
+    transition: opacity 0.5s ease; 
+}
+
+
+@keyframes moveToCenter-p {
+    0% {
+        transform: translate(0, 0);
+    }
+    10% {
+        transform: translate(0, 0);
+    }
+    50%{
+        fill: rgb(252, 255, 55); 
+    }
+    100% {
+        transform: translate(50px, 50px); 
+        fill: rgb(252, 255, 55); 
+    }
+}
+@keyframes moveToCenter-i {
+    0% {
+        transform: translate(0, 0);
+    }
+    10% {
+        transform: translate(0, 0);
+    }
+    50%{
+        fill: red; 
+    }
+    100% {
+        transform: translate(-50px, -50px); 
+        fill: red; 
+    }
+}
+
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    /* 75% {
+        opacity: 0;
+    } */
+    100% {
+        opacity: 0;
+    }
+}
+
+
+.text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    font-size: 32px;
+    font-style: oblique;
+    color: rgb(0, 0, 0);
+    text-shadow: 3px;
+    /* animation: showText 10s forwards; */
+}
+
+@keyframes showText {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes fadeInBackground {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes shake {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px); 
+    }
+}
+
+
+
+.container:active .background{
+    animation: fadeInBackground 10s forwards;
+}
+.container:active .text{
+    animation: showText 10s forwards;
+}
+.container:active .svg-item-i{
+    animation: moveToCenter-i 5s forwards, fadeOut 10s forwards;
+}
+.container:active .svg-item-p{
+    animation: moveToCenter-p 5s forwards, fadeOut 10s forwards;
+}
+.container:active{
+    animation: shake 1s 4s infinite;
+}
+
+.container:hover .img{
+    opacity: 1;
+}

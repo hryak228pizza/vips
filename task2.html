@@ -3,15 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Задание 1</title>
+    <title>Задание 2</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pic.css">
     <link rel="stylesheet" href="logo.css">
+    <link rel="stylesheet" href="flexbox.css">
 </head>
 <body>
 
     <header>
-        <div class="logo-pizza"></div>
+        <a href="index.html">            
+            <div class="logo-pizza"></div>
+        </a>
+        <nav class="menu">
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="task1.html">Задание 1</a></li>
+                <li><a href="task2.html">Задание 2</a></li>
+            </ul>
+        </nav>
     </header>
 
+
+    <main>
+        <h1>Задание 2</h1>
+        <p>Flexbox-бренд. 2024. Без JS:</p>
+        <div class="container">
+            <div class="background"></div>
+            <!-- буква P -->
+            <svg version="1.1" id="Capa_1" class="svg-item-p" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 344.32 344.32" style="enable-background:new 0 0 344.32 344.32;" xml:space="preserve">
+                <path id="path1" d="M205.227,0H75.093c-5.891,0-10.667,4.776-10.667,10.667V344.32H85.76V182.827h119.467 c41.237,0,74.667-33.429,74.667-74.667V74.667C279.893,33.429,246.464,0,205.227,0z M258.56,108.16 c0,29.455-23.878,53.333-53.333,53.333H85.76V21.333h119.467c29.455,0,53.333,23.878,53.333,53.333V108.16z"></path>
+                
+                <image href="happy.png" class="img" >
+                    <animateMotion id="anim1" repeatCount="indefinite" dur="5s" >
+                        <mpath href="#path1" />
+                    </animateMotion>
+                </image>
+            </svg>
+    
+            <!-- буква I -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="svg-item-i">
+                <path id="path2" d="M320 448c0 17.67-14.31 32-32 32H32c-17.69 0-32-14.33-32-32s14.31-32 32-32h96v-320H32c-17.69 0-32-14.33-32-32s14.31-32 32-32h256c17.69 0 32 14.33 32 32s-14.31 32-32 32h-96v320h96C305.7 416 320 430.3 320 448z"/>
+                <image href="happy.png" class="img" >
+                    <animateMotion id="anim2" repeatCount="indefinite" dur="5s" >
+                        <mpath href="#path2" />
+                    </animateMotion>
+                </image>
+            </svg>
+
+            <div class="text">Павел Ильин</div>
+        </div>
+        
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Мои задания.</p>
+    </footer>
 
 
 </body>
