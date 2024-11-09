@@ -1,12 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Задание 1</title>
+    <title>Задание 3</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/turtle.css">
     <link rel="stylesheet" href="css/logo.css">
+    <link rel="stylesheet" href="css/dom-test.css">
+    <script src="scripts/dom.js"></script>
 </head>
 <body>
 
@@ -24,32 +26,23 @@
         </nav>
     </header>
 
+
     <main>
-        <h1>Задание 1</h1>
-        <p>Здесь черепаха, созданная с помощью CSS:</p>
-        <div class="scene">
-            <div class="apple">
-                <div class="body"></div>
-                <div class="leaf"></div>
-            </div>
-            <div class="ground"></div>
-            <div class="turtle">                              
-                <div class="head">
-                    <div class="mouth"></div> 
-                </div>
-                <div class="foot foot1"></div>
-                <div class="foot foot2"></div>
-                <div class="foot foot3"></div>
-                <div class="foot foot4"></div>
-                <div class="shell"></div>
-            </div>
-            
+        <h1>Задание 3</h1>
+        <p>DOM-Тест:</p>
+        <br>
+        <div id="container" class="container">
+            <button id="btn" class="btn" onclick="start()">Вопрос</button>
+            <!-- <div id="answerOptions" class="answerOptions hidden"></div> -->
+            <div id="result" class="result hidden"></div>
         </div>
+        
     </main>
 
     <footer>
         <p>&copy; 2024 Мои задания.</p>
     </footer>
+
 
 </body>
 </html>

@@ -1,0 +1,139 @@
+.container{    
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    max-width: 1000px;
+    background-color: floralwhite;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow: hidden;
+} 
+
+.btn{
+    background-color: #7a7a7a; 
+    color: white;           
+    padding: 10px 20px;      
+    border: none;            
+    cursor: pointer;         
+    font-size: 16px; 
+    align-self: flex-start;
+    margin-left: 25px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.btn:hover{
+    background-color: #b8b8b8; 
+}
+
+.question-list1, .question-list2, .question-list3, .question-list4{
+    margin-bottom: 25px;
+    display: flex;
+    align-items:flex-start;
+    padding: 10px;
+    font-weight: bold;
+    background-color: rgb(255, 242, 215);
+    justify-content: space-around;
+}
+
+.question-list1:active, .question-list2:active, .question-list3:active, .question-list4:active{
+    background-color: #7a7a7a;
+}
+
+.ans-options {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.move-right {
+    transform: translateX(2000%);
+    opacity: 1;
+}
+
+.answer-option {
+    padding: 10px;
+    background-color: #f0e6d2;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 1s ease;
+}
+
+.answer-option.correct {
+    background-color: #dff0d8;
+
+}
+
+.answer-option.incorrect {
+    background-color: #f8d7da;
+}
+
+.answer-option:hover {
+    background-color: #e0e0e0;
+    border: 10px solid #ccc;
+}
+
+
+.explanation{
+    text-align: center;
+}
+
+.result {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.hidden{
+    display: none;
+}
+
+
+
+
+
+
+
+/* 
+
+.question-container {
+    font-size: 20px;
+    padding: 10px;
+    background-color: #f7f2df;
+}
+
+.options-container {
+    display: flex;
+    justify-content: space-around; 
+    gap: 15px; 
+}
+
+.option {
+    padding: 10px 20px;
+    background-color: #f5e8c7;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+    min-width: 100px;
+}
+
+.option:hover {
+    background-color: #e0d4b0;
+}
+
+.feedback {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 16px;
+    color: green;
+}
+
+.correct-mark {
+    color: green;
+    font-size: 20px;
+    font-weight: bold;
+} */
