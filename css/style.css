@@ -145,6 +145,7 @@ footer {
 
     nav.menu ul {
         justify-content: center;
+        flex-wrap: wrap;
         gap: 2px;
     }
 
@@ -165,6 +166,7 @@ footer {
 
     nav.menu ul {
         justify-content: center;
+        flex-wrap: wrap;
         gap: 2px;
     }
 
@@ -197,6 +199,11 @@ footer {
     nav.menu ul {
         justify-content: center;
         gap: 1px;
+
+        flex-wrap: nowrap; /* Запрещаем перенос строк */
+        overflow-x: auto; /* Добавляем горизонтальную прокрутку */
+        white-space: nowrap;
+        
     }
 
     nav.menu ul li a {
