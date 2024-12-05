@@ -203,7 +203,7 @@ footer {
         flex-wrap: nowrap; /* Запрещаем перенос строк */
         overflow-x: auto; /* Добавляем горизонтальную прокрутку */
         white-space: nowrap;
-        
+
     }
 
     nav.menu ul li a {
@@ -213,4 +213,37 @@ footer {
     .assignment-block {
         flex: 1 1 calc(33% - 180px);
     }
+}
+
+
+
+.poem {
+    max-width: 800px; /* Ограничиваем ширину блока */
+    margin: 30px auto; /* Центрируем блок */
+    font-family: "Georgia", serif; /* Элегантный шрифт для стиха */
+    font-size: 18px; /* Увеличенный размер текста */
+    line-height: 1.8; /* Комфортный межстрочный интервал */
+    text-align: justify; /* Выравниваем текст по ширине */
+    padding: 20px;
+    background-color: #f9f9f9; /* Лёгкий фон для выделения */
+    border-left: 4px solid #333; /* Декоративная граница */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Лёгкая тень */
+}
+
+.poem h2, .poem h4 {
+    font-size: 24px; 
+    text-align: center;
+    margin-bottom: 20px;
+    color: #444;
+}
+.poem h4 {
+    font-size: 16px;
+}
+
+.poem p {
+    margin-bottom: 15px; /* Отступы между строфами */
+}
+
+.poem p:last-child {
+    margin-bottom: 0; /* Убираем отступ у последнего абзаца */
 }
