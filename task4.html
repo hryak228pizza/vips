@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Задание 3</title>
+    <title>Задание 4</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/logo.css">
-    <link rel="stylesheet" href="css/dom-test.css">
-    <script src="scripts/dom.js"></script>
+    <link rel="stylesheet" href="css/words.css">
+    <script src="scripts/words.js"></script>
 </head>
 <body>
 
@@ -29,13 +29,22 @@
 
 
     <main>
-        <h1>Задание 3</h1>
-        <p>DOM-Тест:</p>
+        <h1>Задание 4</h1>
+        <p>Слова</p>
         <br>
         <div id="container" class="container">
-            <button id="btn" class="btn" onclick="start()">Вопрос</button>
-            <!-- <div id="answerOptions" class="answerOptions hidden"></div> -->
-            <div id="result" class="result hidden"></div>
+            <div class="up" id="up">
+            </div>
+            <div class="down">
+                <div class="left" id="left" ondrop="drop(event, 'left')" ondragover="allowDrop(event)">
+                </div>
+                <div class="right" id="right" ondrop="drop(event, 'right')" ondragover="allowDrop(event)">
+                    <div class="top-bar">
+                        <input type="text" id="inputField" placeholder="Введите текст">
+                        <button onclick="start()">Разобрать</button>
+                    </div>
+                </div>
+            </div>
         </div>
         
     </main>
