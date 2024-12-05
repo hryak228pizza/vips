@@ -141,6 +141,26 @@ footer {
     }
 
     nav.menu ul li a {
+        font-size: 14px; 
+    }
+
+    .assignment-block {
+        flex: 1 1 calc(33% - 40px);
+    }
+}
+
+@media (max-width: 568px) {
+    header {
+        flex-direction: row;
+        text-align: center;
+    }
+
+    nav.menu ul {
+        justify-content: center;
+        gap: 2px;
+    }
+
+    nav.menu ul li a {
         font-size: 12px; 
     }
 
