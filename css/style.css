@@ -196,6 +196,6 @@ footer {
     }
 
     .assignment-block {
-        flex: 1 1 calc(33% - 80px);
+        flex: 1 1 calc(33% - 180px);
     }
 }
