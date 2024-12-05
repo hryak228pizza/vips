@@ -169,7 +169,7 @@ footer {
     }
 }
 @media (max-width: 480px) {
-    /* h1 {
+     h1 {
         font-size: 1.5rem;
     }
 
@@ -177,7 +177,7 @@ footer {
         font-size: 0.9rem;
     }
 
-    .assignment-block {
+    /*.assignment-block {
         flex: 1 1 calc(33% - 60px);
     } */
 
