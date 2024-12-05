@@ -38,6 +38,11 @@ header {
 }
 
 nav.menu ul {
+    display: flex;
+    flex-wrap: wrap; /* Разрешаем перенос строк */
+    justify-content: center; /* Центрируем элементы */
+    gap: 10px; /* Расстояние между пунктами */
+
     list-style: none;
     display: flex;
     gap: 10px;
@@ -45,6 +50,9 @@ nav.menu ul {
 
 nav.menu ul li {
     margin-right: 20px;
+
+    flex: 1 1 auto; /* Пункты меню занимают доступное пространство */
+    text-align: center; /* Выравниваем текст в пунктах меню */
 }
 
 nav.menu ul li a {
