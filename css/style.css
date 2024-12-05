@@ -188,7 +188,7 @@ footer {
 
     nav.menu ul {
         justify-content: center;
-        gap: 2px;
+        gap: 1px;
     }
 
     nav.menu ul li a {
@@ -196,6 +196,6 @@ footer {
     }
 
     .assignment-block {
-        flex: 1 1 calc(60% - 40px);
+        flex: 1 1 calc(33% - 80px);
     }
 }
