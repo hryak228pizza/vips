@@ -149,7 +149,7 @@ footer {
     }
 }
 @media (max-width: 480px) {
-    h1 {
+    /* h1 {
         font-size: 1.5rem;
     }
 
@@ -159,5 +159,23 @@ footer {
 
     .assignment-block {
         flex: 1 1 calc(33% - 60px);
+    } */
+
+    header {
+        flex-direction: row;
+        text-align: center;
+    }
+
+    nav.menu ul {
+        justify-content: center;
+        gap: 2px;
+    }
+
+    nav.menu ul li a {
+        font-size: 10px; 
+    }
+
+    .assignment-block {
+        flex: 1 1 calc(60% - 40px);
     }
 }
