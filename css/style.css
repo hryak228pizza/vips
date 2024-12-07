@@ -175,7 +175,7 @@ footer {
     }
 
     .assignment-block {
-        flex: 1 1 calc(33% - 40px);
+        flex: 1 1 calc(33% - 80px);
     }
 }
 @media (max-width: 480px) {
