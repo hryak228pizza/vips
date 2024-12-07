@@ -217,6 +217,8 @@ footer {
 
 
 
+
+
 .poem {
     max-width: 800px; /* Ограничиваем ширину блока */
     margin: 30px auto; /* Центрируем блок */
@@ -246,4 +248,68 @@ footer {
 
 .poem p:last-child {
     margin-bottom: 0; /* Убираем отступ у последнего абзаца */
+}
+
+.author {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрируем элементы по вертикали */
+    margin-bottom: 20px; /* Отступ от фотографии до стиха */
+}
+
+.author-photo {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%; /* Скругляем края для создания аватарки */
+    margin-right: 15px; /* Отступ справа от изображения */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Лёгкая тень вокруг фото */
+}
+
+.author h2 {
+    font-size: 24px; /* Размер заголовка */
+    margin: 0; /* Убираем отступы у заголовка */
+    color: #444;
+}
+
+.gallery {
+    margin: 30px auto;
+    max-width: 1200px; /* Ограничиваем максимальную ширину галереи */
+    padding: 10px;
+    text-align: center;
+}
+
+.gallery h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+.gallery-images {
+    display: flex;
+    flex-wrap: wrap; /* Позволяем изображениям переноситься на следующую строку */
+    gap: 10px; /* Расстояние между изображениями */
+    justify-content: center; /* Центрируем изображения */
+}
+
+.gallery-images img {
+    object-fit: cover; /* Масштабирует изображение, заполняя область */
+    width: 350px; /* Фиксированная ширина */
+    height: 250px; /* Фиксированная высота */
+    border-radius: 8px;
+}
+
+.gallery-images img:hover {
+    transform: scale(1.05); /* Увеличение при наведении */
+}
+
+@media (max-width: 768px) {
+    .gallery-images img {
+        flex: 1 1 calc(33.333% - 10px); /* На средних экранах три изображения в строке */
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-images img {
+        flex: 1 1 calc(50% - 10px); /* На узких экранах два изображения в строке */
+    }
 }
