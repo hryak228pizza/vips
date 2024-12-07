@@ -171,7 +171,8 @@ footer {
     }
 
     nav.menu ul li a {
-        font-size: 8px; 
+        font-size: 12px; 
+        flex-wrap: wrap;
     }
 
     .assignment-block {
@@ -200,7 +201,7 @@ footer {
         justify-content: center;
         gap: 1px;
 
-        flex-wrap: nowrap; /* запрет перенос строк */
+        flex-wrap: wrap; /* запрет перенос строк */
         /* overflow-x: auto; горизонтальная прокрутка */
         white-space: nowrap;
 
