@@ -200,8 +200,8 @@ footer {
         justify-content: center;
         gap: 1px;
 
-        flex-wrap: nowrap; /* Запрещаем перенос строк */
-        overflow-x: auto; /* Добавляем горизонтальную прокрутку */
+        flex-wrap: nowrap; /* запрет перенос строк */
+        /* overflow-x: auto; горизонтальная прокрутка */
         white-space: nowrap;
 
     }
