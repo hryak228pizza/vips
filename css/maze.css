@@ -1,0 +1,47 @@
+#maze {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
+  margin: auto;
+  width: 310px; /* ширина лабиринта 31x10px */
+  height: 310px; /* высота лабиринта 31x10px */
+  border: 2px solid black; /* четкая граница для визуализации */
+  box-sizing: content-box; /* Убираем влияние глобального box-sizing */
+}
+
+.block {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  box-sizing: border-box; /* Гарантия корректного размера */
+}
+
+.wall {
+  background-color: #000;
+}
+
+.me {
+  position: relative;
+}
+
+.me:after {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: #23afee;
+  border-radius: 50%;
+}
+
+.finish {
+  background-color: #f31d1d;
+}
+
+
+.timer {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px 0;
+}

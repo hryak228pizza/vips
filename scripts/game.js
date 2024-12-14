@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const startButton = document.getElementById('start-game');
     const playerButton = document.getElementById('start-player-game');
     const timerDisplay = document.getElementById('timer-display');
+    const outtimerDisplay = document.getElementById('outtimer-display');
     //
     const authSection = document.getElementById('auth-section');
     const gameSection = document.getElementById('game-section');
@@ -20,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let gameStartTime = null; //отсчет с 0 при начале игры (для ффиксации времени включения ламп)
     let playerTime = null; //отсчет с 0 при начале хода игрока (для ффиксации времени нажатия на лампы)
     let score = 0;
+    let timeRemaining = 30;
     //
     // let currentUser = null; // Имя текущего пользователя
     let leaderboard = []; // Массив для рейтинга игроков
@@ -32,10 +34,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Обновление таймера
+    // function updateTimer() {
+    //     const currentTime = (Date.now() - timerStart) / 1000;
+    //     timerDisplay.textContent = currentTime.toFixed(3);
+    // }
+
     function updateTimer() {
         const currentTime = (Date.now() - timerStart) / 1000;
+        timeRemaining -= 0.01; // Уменьшаем время каждую десятую долю секунды
+        if (timeRemaining <= 0) {
+            clearInterval(timerInterval);
+            alert('Время вышло! Игра окончена.');
+            resetGame();
+        }
         timerDisplay.textContent = currentTime.toFixed(3);
+        // outtimerDisplay.textContent = timeRemaining.toFixed(2);
     }
+
 
     // Вспомогательная функция для зажигания лампочки
     function activateLamp(lamp, delay) {
@@ -62,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Запуск таймера
         timerStart = Date.now();
+        timeRemaining = 30;
         timerInterval = setInterval(updateTimer, 10);
 
         // Случайное зажигание лампочек
@@ -120,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     leaderboard.push({ username: currentUser, time: score });
                     localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
 
-                    window.location.href = 'leaderboard.html';
+                    window.location.href = 'course2.html';
 
                     resetGame();
                 }

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Курсовая</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/logo.css">
+    <link rel="stylesheet" href="css/game.css">
+    <!-- <script src="scripts/game2.js"></script> -->
+</head>
+<body>
+
+    <header>
+        <a href="index.html">            
+            <div class="logo-pizza"></div>
+        </a>
+        <nav class="menu">
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="course.html">Уровень 1</a></li>
+                <li><a href="course2.html">Уровень 2</a></li>
+                <li><a href="course3.html">Уровень 3</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+            
+        <!-- Вторая игра -->
+            
+
+        <div class="rules" style="white-space: nowrap;">Перед вами - траектория. Хватайте кружок мышкой и ведите внутри
+                этой полоски до конца, не выходя за границу. Как только дойдете до правого края 
+                окна, отпускайте мышь. 
+                <br>Если заступить за границу вы увидите <i>красный экран</i>, а
+                результат сбросится; начинайте сначала. Чем быстрее - тем лучше, и постарайтесь
+                уложиться в 30 секунд. </div>
+
+        <svg class="svg" width="1920" height="488" viewBox="0 0 1920 488" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 243.945C130.712 243.945 248.411 -39.6051 339.516 41.6303C437.886 129.345 440.885 378.109 568.715 453.066C665.088 509.579 576.08 247.473 689.057 194.861C759.464 162.073 912.995 442.044 951.711 413.789C1052.33 340.358 952.546 189.09 1130.98 207.498C1229.99 217.713 1243.87 226.553 1344.29 220.278C1430.53 214.889 1402.04 130.501 1485.15 137.078C1641.31 149.436 1477.27 347.474 1661.57 348.253C1800.47 348.84 1760.3 243.945 1920 243.945" stroke="#B1D04B" stroke-width="53"/>
+            </svg>
+            
+                
+            
+                
+                
+            
+
+                        
+        <div class="ball" draggable="true">
+            
+        </div>
+
+        <div class="timer">
+            Таймер: <span id="timer-display">0.000</span> сек
+        </div>
+
+
+        <script src="scripts/game2.js"></script>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Мои задания.</p>
+    </footer>
+
+</body>
+</html>

@@ -23,11 +23,8 @@
                 <li><a href="task3.html">Задание 3</a></li>
                 <li><a href="task4.html">Задание 4</a></li>
                 <li><a href="auth.html">Курсовая</a></li>
-                <li><a href="task.html">Задание </a></li>
             </ul>
         </nav>
-
-
 
         <style>    
             h1 {
@@ -35,33 +32,32 @@
                 font-size: 24px;
                 color: #333;
             }
-    
+
             table {
                 width: 60%;
                 border-collapse: collapse;
-                /* margin: 20px 0; */
                 margin-left: 20%;
             }
-    
+
             th, td {
                 padding: 12px;
                 border: 1px solid #ddd;
                 text-align: center;
             }
-    
+
             th {
                 background-color: #8a8a8a;
                 color: white;
             }
-    
+
             tr:nth-child(even) {
                 background-color: #f2f2f2;
             }
-    
+
             tr:hover {
                 background-color: #ddd;
             }
-    
+
             button {
                 margin-top: 20px;
                 padding: 10px 20px;
@@ -72,15 +68,33 @@
                 cursor: pointer;
                 font-size: 16px;
             }
-    
+
             button:hover {
                 background-color: #414141;
+            }
+
+            .clear-data {
+                position: absolute;
+                top: 80px;
+                right: 10px;
+                padding: 10px 20px;
+                background-color: #3f3f3f;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 14px;
+            }
+
+            .clear-data:hover {
+                background-color: #808080;
             }
         </style>
 
     </header>
 
     <main>
+        <button class="clear-data" onclick="clearAllData()">Очистить все данные</button>
         <h1>Рейтинг игроков</h1>
         <table>
             <thead>
@@ -93,6 +107,9 @@
         </table>
         <button onclick="window.location.href='auth.html'">Играть снова</button>
     </main>
+
+
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const leaderboard = JSON.parse(localStorage.getItem('leaderboard') || '[]');
@@ -103,6 +120,12 @@
                 .map(player => `<tr><td>${player.username}</td><td>${player.time.toFixed(3)}</td></tr>`)
                 .join('');
         });
+
+        function clearAllData() {
+            localStorage.clear();
+            document.getElementById('leaderboard-body').innerHTML = '';
+            alert('Все данные были удалены!');
+        }
     </script>
 </body>
 </html>

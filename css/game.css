@@ -22,3 +22,58 @@
     text-align: center;
     margin: 20px 0;
 }
+
+.svg{
+    margin-left: -20px;
+}
+
+/* .ball {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgb(43, 124, 54);
+    border: 3px solid black;
+    top: 35vh;
+}
+.ball {
+    transition: transform 0.1s linear;
+}
+
+
+.ball:active{
+    cursor: grabbing;
+} */
+
+.ball {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgb(43, 124, 54);
+    border: 3px solid black;
+    cursor: grab;
+}
+
+.ball:active {
+    cursor: grabbing;
+}
+
+.svg:active{
+    cursor: grabbing;
+}
+
+.hide{
+    display: none;
+}
+
+.hovered{
+    border-top: 2px solid dodgerblue;
+}
+
+.hold{
+    color: white;
+    background: crimson;
+    box-shadow: 0 -50px 40px -40px yellowgreen inset, 0 -80px 30px -40px gold inset;
+    border: 5px solid white;
+}

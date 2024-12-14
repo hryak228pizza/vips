@@ -18,10 +18,9 @@
         <nav class="menu">
             <ul>
                 <li><a href="index.html">Главная</a></li>
-                <li><a href="task1.html">Задание 1</a></li>
-                <li><a href="task2.html">Задание 2</a></li>
-                <li><a href="task3.html">Задание 3</a></li>
-                <li><a href="task4.html">Задание 4</a></li>
+                <li><a href="course.html">Уровень 1</a></li>
+                <li><a href="course2.html">Уровень 2</a></li>
+                <li><a href="course3.html">Уровень 3</a></li>
             </ul>
         </nav>
     </header>
@@ -29,6 +28,13 @@
     <main>
 
         <!-- Первая игра -->
+        <div class="rules" style="white-space: wrap;">При нажатии на кнопку <b>Начать игру</b> запустится таймер, а лампочки по очереди
+            начнут зажигаться в определенном порядке с некоторой переодичностью. Ваша задача
+            ориентируясь по таймеру запомнить когда и какая лампа загорелась. После того, лампочки
+            загорятся третий раз, Вам будет доступна кнопка <b>Сделать ход</b>. Нажав на неё, таймер 
+            перезапустится, и уже Вы должны будете нажать на лампочки в том порядке и в то время,
+            в которое они и загорались. Чем ближе к правильному времени - тем лучше результат. Учтите,
+            оба таймера работают всего 30 секунд. </div>
         <div class="game-container">
             <div class="lamp" id="lamp1"></div>
             <div class="lamp" id="lamp2"></div>
@@ -36,6 +42,7 @@
         </div>
         <div class="timer">
             Таймер: <span id="timer-display">0.000</span> сек
+            <!-- Обратный отсчет: <span id="outtimer-display">0.000</span> сек -->
         </div>
         <button id="start-game">Начать игру</button>
         <button id="start-player-game" disabled>Сделать ход</button>
