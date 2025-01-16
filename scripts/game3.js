@@ -37,6 +37,8 @@ const currentUser = localStorage.getItem('currentUser');
         }
     }
 
+    //Проверка на тупик
+
     // Функция для проверки, находится ли ячейка в пределах лабиринта
     function isValid(y, x) {
         return y >= 0 && y < height && x >= 0 && x < width;
@@ -112,15 +114,21 @@ const currentUser = localStorage.getItem('currentUser');
             // updateTimer();
         }
 
-        const newPosition = [
+        const newPosition = [            
             currentPosition[0] + move[0],
             currentPosition[1] + move[1]
         ];
 
         if (isValid(newPosition[0], newPosition[1]) && maze[newPosition[0]][newPosition[1]] !== 'wall') {
+            document.getElementById(`${currentPosition[0]}-${currentPosition[1]}`).style.backgroundColor = 'Green';
             document.getElementById(`${currentPosition[0]}-${currentPosition[1]}`).className = 'block';
             currentPosition = newPosition;
             document.getElementById(`${currentPosition[0]}-${currentPosition[1]}`).className = 'block me';
+
+
+            // Проверка на тупик
+            console.log(document.getElementById(`${currentPosition[0]-1}`));
+            //if(document.getElementById(`${currentPosition[0]-1}-${currentPosition[1]}`)            
 
             // Проверка на победу
             if (currentPosition[0] === height - 1 && currentPosition[1] === width - 1) {
