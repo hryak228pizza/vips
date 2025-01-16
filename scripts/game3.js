@@ -118,6 +118,7 @@ const currentUser = localStorage.getItem('currentUser');
             currentPosition[0] + move[0],
             currentPosition[1] + move[1]
         ];
+        
 
         if (isValid(newPosition[0], newPosition[1]) && maze[newPosition[0]][newPosition[1]] !== 'wall') {
             document.getElementById(`${currentPosition[0]}-${currentPosition[1]}`).style.backgroundColor = 'Green';
