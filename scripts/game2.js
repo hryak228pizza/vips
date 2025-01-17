@@ -1,184 +1,121 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const ball = document.querySelector('.ball');
+    const placeholder = document.querySelector('path');
+    const body = document.body;
+    const currentUser = localStorage.getItem('currentUser');
+    const timerDisplay = document.getElementById('timer-display');
+    const path = document.getElementById('trajectory');
+    let timerStart = 0;
+    let timerInterval = null;
+    let score = 0;
+    let timeRemaining = 30;
 
+    // Функция для позиционирования шарика
+    function positionBall() {
+        const startPoint = path.getPointAtLength(0);
+        const placeholderRect = placeholder.getBoundingClientRect();
+        const adjustedX = startPoint.x + placeholderRect.left - ball.offsetWidth / 2;
+        const adjustedY = startPoint.y + placeholderRect.top - ball.offsetHeight / 2;
 
-const ball = document.querySelector('.ball');
-const placeholder = document.querySelector('path');
-ballRect = ball.getBoundingClientRect();
-// const finishZone = document.querySelector('.finish-zone');
-const body = document.body;
-const currentUser = localStorage.getItem('currentUser');
-const windowInnerWidth = document.documentElement.clientWidth;
+        ball.style.left = `${adjustedX}px`;
+        ball.style.top = `${adjustedY}px`;
+    }
 
-///
-console.log(document.querySelector('path'));
+    // Изначально позиционируем шарик
+    positionBall();
 
-let timerStart = 0; // Начало отсчета таймера
-let timerInterval = null; // Интервал обновления таймера
-const timerDisplay = document.getElementById('timer-display');
-let score = 0;
-let timeRemaining = 30;
+    // Обновляем позицию шарика при изменении размера окна
+    window.addEventListener('resize', positionBall);
 
-ball.addEventListener('dragstart', dragStart);
-ball.addEventListener('dragend', dragEnd);
+    ball.addEventListener('dragstart', dragStart);
+    ball.addEventListener('dragend', dragEnd);
+    placeholder.addEventListener('dragover', dragOver);
+    placeholder.addEventListener('dragenter', dragEnter);
+    placeholder.addEventListener('dragleave', dragLeave);
+    placeholder.addEventListener('drop', dragDrop);
 
-placeholder.addEventListener('dragover', dragOver);
-placeholder.addEventListener('dragenter', dragEnter);
-placeholder.addEventListener('dragleave', dragLeave);
-placeholder.addEventListener('drop', dragDrop);
+    function updateTimer() {
+        const currentTime = (Date.now() - timerStart) / 1000;
+        timeRemaining -= 0.01;
+        if (timeRemaining <= 0) {
+            body.style.backgroundColor = 'red';
+            clearInterval(timerInterval);
+            setTimeout(() => {
+                body.style.backgroundColor = '';
+                resetGame();
+            }, 1000);
+        }
+        timerDisplay.textContent = currentTime.toFixed(3);
+    }
 
-console.log(placeholder.getPointAtLength(0));
-// ball.style.top = placeholder.getPointAtLength(0).y;
-ball.style.top = `${placeholder.getPointAtLength(0).y + 230}px`
-ball.style.left = `${placeholder.getPointAtLength(0).x}px`
-console.log(ball.getBoundingClientRect());
-console.log(ball.getBoundingClientRect().y);
-
-// function updateTimer() {
-//     const currentTime = (Date.now() - timerStart) / 1000;
-//     timerDisplay.textContent = currentTime.toFixed(3);
-// }
-function updateTimer() {
-    const currentTime = (Date.now() - timerStart) / 1000;
-    timeRemaining -= 0.01; // Уменьшаем время каждую десятую долю секунды
-    if (timeRemaining <= 0) {
-        body.style.backgroundColor = 'red';
+    function dragStart(event) {
         clearInterval(timerInterval);
-        // alert('Время вышло! Игра окончена.');
-        // resetGame();
-        // event.target.classList.remove('hovered');
-        // console.log('game ended');
+        timerDisplay.textContent = "0.000";
+        timerStart = Date.now();
+        timeRemaining = 30;
+        timerInterval = setInterval(updateTimer, 10);
 
-        // alert('вы проиграли! Попробуйте снова.');
-        
+        event.target.classList.add('hold');
+        setTimeout(() => event.target.classList.add('hide'), 0);
+    }
+
+    function dragEnd(event) {
+        event.target.classList.remove('hold', 'hide');
+    }
+
+    function dragOver(event) {
+        event.preventDefault();
+    }
+
+    function dragEnter(event) {
+        event.target.classList.add('hovered');
+    }
+
+    function dragLeave(event) {
+        event.target.classList.remove('hovered');
+        body.style.backgroundColor = 'red';
         setTimeout(() => {
             body.style.backgroundColor = '';
-            clearInterval(timerInterval);  
-            resetGame();  
-        }, 1000); 
+            resetGame();
+        }, 1000);
     }
-    timerDisplay.textContent = currentTime.toFixed(3);
-    // outtimerDisplay.textContent = timeRemaining.toFixed(2);
-}
 
-function dragStart(event){
-    console.log(placeholder.x);
+    function dragDrop(event) {
+        const ballRect = ball.getBoundingClientRect();
+        const placeholderRect = placeholder.getBoundingClientRect();
 
-    clearInterval(timerInterval);
-    timerDisplay.textContent = "0.000";
+        // Проверяем, достиг ли шарик правой границы контейнера с траекторией
+        if (ballRect.right >= placeholderRect.right-30) {
+            score = (Date.now() - timerStart) / 100;
+            clearInterval(timerInterval);
+            alert(`Вы победили! Score: ${score}`);
 
-    // Запуск таймера
-    timerStart = Date.now();
-    timeRemaining = 30;
-    timerInterval = setInterval(updateTimer, 10);
+            const leaderboard = JSON.parse(localStorage.getItem('leaderboard') || '[]');
+            let userFound = false;
 
-    event.target.classList.add('hold');
-    setTimeout(() => event.target.classList.add('hide') , 0);
-    
-}
-
-function dragEnd(){
-    event.target.classList.remove('hold', 'hide');
-}
-
-function dragOver(event){
-    event.preventDefault();
-}
-
-function dragEnter(event){
-    event.target.classList.add('hovered');
-    console.log('game started');
-}
-
-function dragLeave(event){
-
-//     var draggedElement = event.target;  // Элемент, который был перетащен
-//   draggedElement.remove(); 
-
-
-
-    event.target.classList.remove('hovered');
-    console.log('game ended');
-
-    // alert('вы проиграли! Попробуйте снова.');
-    body.style.backgroundColor = 'red';
-    setTimeout(() => {
-        body.style.backgroundColor = '';
-        clearInterval(timerInterval);  
-    resetGame();  
-    }, 1000); 
-
-    
-}
-
-function dragDrop(event){
-    console.log(document.documentElement.clientWidth);
-    console.log(event.clientX);
-
-    if(document.documentElement.clientWidth - event.clientX <= 30){
-        score = (Date.now() - timerStart) /100;
-        console.log(score);
-
-        event.target.classList.remove('hovered');
-        // event.target.append(ball);
-        console.log('you win');
-
-        clearInterval(timerInterval);
-        alert(`Вы победили! Score:${score}`);
-        // resetGame();
-
-        const leaderboard = JSON.parse(localStorage.getItem('leaderboard') || '[]');
-
-        // Ищем пользователя в рейтинге
-        let userFound = false;
-        for (let i = 0; i < leaderboard.length; i++) {
-            if (leaderboard[i].username === currentUser) {
-                leaderboard[i].time += score;
-            userFound = true;
-            break;
+            for (let i = 0; i < leaderboard.length; i++) {
+                if (leaderboard[i].username === currentUser) {
+                    leaderboard[i].time += score;
+                    userFound = true;
+                    break;
+                }
             }
+
+            if (!userFound) {
+                leaderboard.push({ username: currentUser, time: score });
+            }
+
+            localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
+            window.location.href = 'course3.html';
+        } else {
+            clearInterval(timerInterval);
+            timerDisplay.textContent = "0.000";
         }
-
-        localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
-
-        window.location.href = 'course3.html';
     }
-    else{
+
+    function resetGame() {
         clearInterval(timerInterval);
-    timerDisplay.textContent = "0.000"; // Сброс таймера
+        timerDisplay.textContent = "0.000";
+        location.reload();
     }
-
-    
-
-
-    // const ballRect = ball.getBoundingClientRect();
-
-    // console.log(document.documentElement.clientWidth);
-    // console.log(ballRect.right);
-    // if(document.documentElement.clientWidth - ballRect.right <= 30){
-    //     alert('win');
-    // }
-}
-
-
-function resetGame() {
-    
-    clearInterval(timerInterval);
-    timerDisplay.textContent = "0.000"; // Сброс таймера
-
-
-    location.reload();
-}
-
-// function releaseMouseButton() {
-//     // Создаем событие mouseup
-//     const mouseUpEvent = new MouseEvent('mouseup', {
-//         bubbles: true, // Событие должно пузыриться, чтобы оно сработало на документе
-//         cancelable: true
-//     });
-
-//     // Диспатчим событие mouseup на документ
-//     document.dispatchEvent(mouseUpEvent);
-//     console.log('Mouse button released programmatically');
-// }
-
 });

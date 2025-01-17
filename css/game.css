@@ -22,10 +22,25 @@
     text-align: center;
     margin: 20px 0;
 }
-
-.svg{
-    margin-left: -20px;
+.game-window {
+    width: 800px;  /* Ширина окна */
+    height: 400px; /* Высота окна */
+    border: 2px solid #000; /* Граница для видимости */
+    overflow: hidden; /* Скрыть все, что выходит за границы */
+    position: relative; /* Для позиционирования элементов внутри */
+    /* margin-left: 30%; */
 }
+
+/* SVG внутри окна */
+.game-window svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Адаптация SVG к размеру контейнера */
+
+}
+/* .svg{
+    margin-left: -20px;
+} */
 
 /* .ball {
     position: absolute;
@@ -53,6 +68,7 @@
     background-color: rgb(43, 124, 54);
     border: 3px solid black;
     cursor: grab;
+    /* margin-left: 30%; */
 }
 
 .ball:active {
