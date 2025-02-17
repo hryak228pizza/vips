@@ -1,26 +1,55 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const trajectories = [
+        document.querySelector('.trajectory1'),
+        document.querySelector('.trajectory2'),
+        document.querySelector('.trajectory3')
+    ];
+    
+    const randomIndex = Math.floor(Math.random() * trajectories.length);
+    const selectedTrajectory = trajectories[randomIndex];
+
+    trajectories.forEach(svg => {
+        svg.style.display = svg === selectedTrajectory ? 'block' : 'none';
+    });
+    
     const ball = document.querySelector('.ball');
-    const placeholder = document.querySelector('path');
+    //const placeholder = document.querySelector('path');
     const body = document.body;
     const currentUser = localStorage.getItem('currentUser');
     const timerDisplay = document.getElementById('timer-display');
-    const path = document.getElementById('trajectory');
+
+    //const path = document.getElementById('trajectory');
+    const path = selectedTrajectory.querySelector('path');
+
     let timerStart = 0;
     let timerInterval = null;
     let score = 0;
-    let timeRemaining = 30;
+    //let timeRemaining = 30;
+    let timeRemaining = Math.floor(Math.random() * (35 - 25 + 1)) + 25;
+
+    // Вставляем сгенерированное число в элемент с id="time-limit"
+    document.getElementById('time-limit').textContent = timeRemaining;
 
     // Функция для позиционирования шарика
     function positionBall() {
+        if (!path) return;
+
         const startPoint = path.getPointAtLength(0);
-        const placeholderRect = placeholder.getBoundingClientRect();
-        const adjustedX = startPoint.x + placeholderRect.left - ball.offsetWidth / 2;
-        const adjustedY = startPoint.y + placeholderRect.top - ball.offsetHeight / 2;
+        const pathRect = path.getBoundingClientRect();
+        const ballRect = ball.getBoundingClientRect();
+
+        // Вычисляем корректные координаты относительно окна
+        const adjustedX = startPoint.x + pathRect.left - ballRect.width / 2;
+        const adjustedY = startPoint.y + pathRect.top - ballRect.height / 2;
 
         ball.style.left = `${adjustedX}px`;
-        ball.style.top = `${adjustedY}px`;
+        ball.style.top = `${adjustedY-10}px`;
     }
 
+    window.addEventListener('resize', () => {
+        setTimeout(positionBall, 100); // Добавляем небольшую задержку для корректного пересчета размеров
+    });
+    
     // Изначально позиционируем шарик
     positionBall();
 
@@ -29,10 +58,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ball.addEventListener('dragstart', dragStart);
     ball.addEventListener('dragend', dragEnd);
-    placeholder.addEventListener('dragover', dragOver);
-    placeholder.addEventListener('dragenter', dragEnter);
-    placeholder.addEventListener('dragleave', dragLeave);
-    placeholder.addEventListener('drop', dragDrop);
+    // placeholder.addEventListener('dragover', dragOver);
+    // placeholder.addEventListener('dragenter', dragEnter);
+    // placeholder.addEventListener('dragleave', dragLeave);
+    // placeholder.addEventListener('drop', dragDrop);
+    path.addEventListener('dragover', dragOver);
+    path.addEventListener('dragenter', dragEnter);
+    path.addEventListener('dragleave', dragLeave);
+    path.addEventListener('drop', dragDrop);
 
     function updateTimer() {
         const currentTime = (Date.now() - timerStart) / 1000;
@@ -49,6 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function dragStart(event) {
+        console.log(ball.getBoundingClientRect()); // Проверка координат
+
         clearInterval(timerInterval);
         timerDisplay.textContent = "0.000";
         timerStart = Date.now();
@@ -56,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         timerInterval = setInterval(updateTimer, 10);
 
         event.target.classList.add('hold');
-        setTimeout(() => event.target.classList.add('hide'), 0);
+        //setTimeout(() => event.target.classList.add('hide'), 0);
     }
 
     function dragEnd(event) {
@@ -71,18 +106,90 @@ document.addEventListener('DOMContentLoaded', () => {
         event.target.classList.add('hovered');
     }
 
+    // function dragLeave(event) {
+    //     event.target.classList.remove('hovered');
+    //     body.style.backgroundColor = 'red';
+    //     setTimeout(() => {
+    //         body.style.backgroundColor = '';
+    //         resetGame();
+    //     }, 1000);
+    // }
+
     function dragLeave(event) {
         event.target.classList.remove('hovered');
-        body.style.backgroundColor = 'red';
-        setTimeout(() => {
-            body.style.backgroundColor = '';
-            resetGame();
-        }, 1000);
+        
+        const ballRect = ball.getBoundingClientRect();
+        const pathRect = path.getBoundingClientRect();
+        
+        // Допустимая погрешность (например, 5 пикселей)
+        const tolerance = 5;
+    
+        // Проверяем, выходит ли шарик за правую границу траектории
+        const isWinningExit = event.clientX >= pathRect.right;
+        console.log(event.clientX);
+        console.log(pathRect.x);
+        
+        if (isWinningExit) {
+            clearInterval(timerInterval);
+            body.style.backgroundColor = 'green';
+
+            score = (Date.now() - timerStart) / 1000;
+            //alert(`Вы победили! Ваш результат: ${score.toFixed(3)} секунд`);
+            const victoryMessageElement = document.getElementById('victory-message');
+            victoryMessageElement.style.display = 'block';
+            timerDisplay.style.display = 'none';
+            const timer = document.querySelector('.timer');
+            timer.style.display = 'none';
+
+
+            // Добавляем сообщение о победе
+            victoryMessageElement.innerHTML = `Вы победили! Ваш результат: ${score.toFixed(3)} секунд`;
+    
+            // Обновляем таблицу рекордов
+            const leaderboard = JSON.parse(localStorage.getItem('leaderboard') || '[]');
+            let userFound = false;
+    
+            for (let i = 0; i < leaderboard.length; i++) {
+                if (leaderboard[i].username === currentUser) {
+                    leaderboard[i].time += score;
+                    userFound = true;
+                    break;
+                }
+            }
+    
+            if (!userFound) {
+                leaderboard.push({ username: currentUser, time: score });
+            }
+    
+            localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
+    
+            // Переход на следующий экран
+            setTimeout(() => {
+                window.location.href = 'course3.html';
+            }, 3000);
+        } else {
+
+            const ballRect = ball.getBoundingClientRect();
+            const pathRect = path.getBoundingClientRect();
+            console.log(ballRect.right);
+            console.log(pathRect.right);
+
+            // Если шарик выходит за границу в любом другом месте → проигрыш
+            body.style.backgroundColor = 'red';
+            setTimeout(() => {
+                body.style.backgroundColor = '';
+                resetGame();
+            }, 1000);
+        }
     }
+    
 
     function dragDrop(event) {
+        //const ballRect = ball.getBoundingClientRect();
+        //const placeholderRect = placeholder.getBoundingClientRect();
+
+        const placeholderRect = path.getBoundingClientRect();
         const ballRect = ball.getBoundingClientRect();
-        const placeholderRect = placeholder.getBoundingClientRect();
 
         // Проверяем, достиг ли шарик правой границы контейнера с траекторией
         if (ballRect.right >= placeholderRect.right-30) {

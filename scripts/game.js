@@ -21,7 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let gameStartTime = null; //отсчет с 0 при начале игры (для ффиксации времени включения ламп)
     let playerTime = null; //отсчет с 0 при начале хода игрока (для ффиксации времени нажатия на лампы)
     let score = 0;
-    let timeRemaining = 30;
+    //let timeRemaining = 30;
+    let timeRemaining = Math.floor(Math.random() * (35 - 25 + 1)) + 25;
+
+    // Вставляем сгенерированное число в элемент с id="time-limit"
+    document.getElementById('time-limit').textContent = timeRemaining;
+
     //
     // let currentUser = null; // Имя текущего пользователя
     let leaderboard = []; // Массив для рейтинга игроков
@@ -77,7 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Запуск таймера
         timerStart = Date.now();
-        timeRemaining = 30;
+        //timeRemaining = 30;
+        timeRemaining = Math.floor(Math.random() * (35 - 25 + 1)) + 25;
         timerInterval = setInterval(updateTimer, 10);
 
         // Случайное зажигание лампочек

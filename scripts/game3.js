@@ -79,7 +79,11 @@ const currentUser = localStorage.getItem('currentUser');
     let timerStarted = false;
     let timerStart;
     const timerDisplay = document.getElementById('timer-display');    
-    let timeRemaining = 30;
+    //let timeRemaining = 30;
+    let timeRemaining = Math.floor(Math.random() * (35 - 25 + 1)) + 25;
+
+    // Вставляем сгенерированное число в элемент с id="time-limit"
+    document.getElementById('time-limit').textContent = timeRemaining;
 
     // Функция для обновления таймера
     function updateTimer() {
@@ -110,7 +114,8 @@ const currentUser = localStorage.getItem('currentUser');
             timerStarted = true;
             timerStart = Date.now();
             timerInterval = setInterval(updateTimer, 10);
-            timeRemaining = 30;
+            //timeRemaining = 30;
+            timeRemaining = Math.floor(Math.random() * (35 - 25 + 1)) + 25;
             // updateTimer();
         }
 
