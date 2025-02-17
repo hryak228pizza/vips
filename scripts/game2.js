@@ -104,6 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function dragEnter(event) {
         event.target.classList.add('hovered');
+        //console.log(event.clientX);
     }
 
     // function dragLeave(event) {
@@ -120,14 +121,12 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const ballRect = ball.getBoundingClientRect();
         const pathRect = path.getBoundingClientRect();
-        
-        // Допустимая погрешность (например, 5 пикселей)
-        const tolerance = 5;
     
         // Проверяем, выходит ли шарик за правую границу траектории
         const isWinningExit = event.clientX >= pathRect.right;
-        console.log(event.clientX);
-        console.log(pathRect.x);
+        console.log("event.clientX  "   + event.clientX);
+        console.log("pathRect.x  " + pathRect.right);
+        console.log("isWinningExit  " + isWinningExit);
         
         if (isWinningExit) {
             clearInterval(timerInterval);
@@ -171,8 +170,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const ballRect = ball.getBoundingClientRect();
             const pathRect = path.getBoundingClientRect();
-            console.log(ballRect.right);
-            console.log(pathRect.right);
+            //console.log(ballRect.right);
+            //console.log(pathRect.right);
 
             // Если шарик выходит за границу в любом другом месте → проигрыш
             body.style.backgroundColor = 'red';
